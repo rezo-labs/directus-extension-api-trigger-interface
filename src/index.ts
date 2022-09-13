@@ -14,61 +14,122 @@ export default defineInterface({
 	group: 'presentation',
 	options: [
 		{
-			field: 'label',
-			name: 'Label',
-			type: 'string',
-			meta: {
-				width: 'half',
-				interface: 'input',
-			},
-		},
-		{
-			field: 'size',
-			name: 'Size',
+			field: 'layout',
+			name: 'Layout',
 			type: 'string',
 			schema: {
-				default_value: '',
+				default_value: 'vertical',
 			},
 			meta: {
-				width: 'half',
 				interface: 'select-dropdown',
 				options: {
 					choices: [
-						{ text: 'x-small', value: 'x-small' },
-						{ text: 'small', value: 'small' },
-						{ text: 'default', value: '' },
-						{ text: 'large', value: 'large' },
-						{ text: 'x-large', value: 'x-large' },
+						{ text: 'Horizontal', value: 'horizontal' },
+						{ text: 'Vertical', value: 'vertical' },
 					],
 				},
 			},
 		},
 		{
-			field: 'url',
-			name: 'URL',
-			type: 'string',
+			field: 'triggers',
+			name: 'Triggers',
+			type: 'json',
 			meta: {
-				width: 'full',
-				interface: 'input',
-			},
-		},
-		{
-			field: 'method',
-			name: 'Method',
-			type: 'string',
-			schema: {
-				default_value: 'GET',
-			},
-			meta: {
-				interface: 'select-dropdown',
-				width: 'half',
+				interface: 'list',
 				options: {
-					choices: [
-						{ text: 'GET', value: 'GET' },
-						{ text: 'POST', value: 'POST' },
+					fields: [
+						{
+							field: 'label',
+							name: 'Label',
+							type: 'string',
+							meta: {
+								width: 'half',
+								interface: 'input',
+							},
+						},
+						{
+							field: 'size',
+							name: 'Size',
+							type: 'string',
+							schema: {
+								default_value: '',
+							},
+							meta: {
+								width: 'half',
+								interface: 'select-dropdown',
+								options: {
+									choices: [
+										{ text: 'x-small', value: 'x-small' },
+										{ text: 'small', value: 'small' },
+										{ text: 'default', value: '' },
+										{ text: 'large', value: 'large' },
+										{ text: 'x-large', value: 'x-large' },
+									],
+								},
+							},
+						},
+						{
+							field: 'type',
+							name: 'Type',
+							type: 'string',
+							schema: {
+								default_value: 'normal',
+							},
+							meta: {
+								width: 'half',
+								interface: 'select-dropdown',
+								default_value: 'normal',
+								options: {
+									choices: [
+										{ text: 'Primary', value: 'primary' },
+										{ text: 'Normal', value: 'normal' },
+										{ text: 'Info', value: 'info' },
+										{ text: 'Success', value: 'success' },
+										{ text: 'Warning', value: 'warning' },
+										{ text: 'Danger', value: 'danger' },
+									],
+								},
+							},
+						},
+						{
+							field: 'icon',
+							name: 'Icon',
+							type: 'string',
+							meta: {
+								width: 'half',
+								interface: 'select-icon',
+							},
+						},
+						{
+							field: 'url',
+							name: 'URL',
+							type: 'string',
+							meta: {
+								width: 'full',
+								interface: 'input',
+							},
+						},
+						{
+							field: 'method',
+							name: 'Method',
+							type: 'string',
+							schema: {
+								default_value: 'GET',
+							},
+							meta: {
+								interface: 'select-dropdown',
+								width: 'half',
+								options: {
+									choices: [
+										{ text: 'GET', value: 'GET' },
+										{ text: 'POST', value: 'POST' },
+									],
+								},
+							},
+						},
 					],
 				},
 			},
-		}
+		},
 	],
 });

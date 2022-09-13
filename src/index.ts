@@ -7,9 +7,42 @@ export default defineInterface({
 	icon: 'sync',
 	description: 'Display a button to trigger custom APIs',
 	component: InterfaceComponent,
+	hideLabel: true,
+	hideLoader: true,
 	types: ['alias'],
+	localTypes: ['presentation'],
 	group: 'presentation',
 	options: [
+		{
+			field: 'label',
+			name: 'Label',
+			type: 'string',
+			meta: {
+				width: 'half',
+				interface: 'input',
+			},
+		},
+		{
+			field: 'size',
+			name: 'Size',
+			type: 'string',
+			schema: {
+				default_value: '',
+			},
+			meta: {
+				width: 'half',
+				interface: 'select-dropdown',
+				options: {
+					choices: [
+						{ text: 'x-small', value: 'x-small' },
+						{ text: 'small', value: 'small' },
+						{ text: 'default', value: '' },
+						{ text: 'large', value: 'large' },
+						{ text: 'x-large', value: 'x-large' },
+					],
+				},
+			},
+		},
 		{
 			field: 'url',
 			name: 'URL',

@@ -7,7 +7,7 @@
 			:class="[trigger.type]"
 			:loading="loadings[index].value"
 			v-bind="{ [trigger.size]: true }"
-			@click="onClick(trigger.method, trigger.url, index)"
+			@click="onClick(trigger.method, parsedUrls[index], index)"
 		>
 			{{ trigger.label }}
 		</v-button>
@@ -15,8 +15,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { computed, defineComponent, inject, PropType, ref } from 'vue';
 import { useApi, useStores } from '@directus/extensions-sdk';
+import { render } from 'micromustache';
 
 type Trigger = {
 	label: string;
@@ -43,9 +44,12 @@ export default defineComponent({
 		const { useNotificationsStore } = useStores();
 		const store = useNotificationsStore();
 
+		const values = inject('values', ref<Record<string, any>>({}));
+		const parsedUrls = computed(() => props.triggers.map((trigger) => render(trigger.url ?? '', values.value)));
+
 		const loadings = props.triggers.map(() => ref(false));
 
-		return { loadings, onClick };
+		return { loadings, parsedUrls, onClick };
 
 		async function onClick(method: string, url: string, index: number) {
 			const loading = loadings[index];

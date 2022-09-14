@@ -128,6 +128,18 @@ export default defineInterface({
 							},
 						},
 						{
+							field: 'reload',
+							name: 'Reload',
+							type: 'boolean',
+							schema: {
+								default_value: false,
+							},
+							meta: {
+								interface: 'boolean',
+								width: 'half',
+							},
+						},
+						{
 							field: 'disabledConditions',
 							name: 'Disabled Conditions',
 							type: 'json',

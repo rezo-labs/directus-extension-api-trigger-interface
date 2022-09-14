@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject, PropType, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useApi, useStores } from '@directus/extensions-sdk';
 import { Filter } from '@directus/shared/types';
 import { render } from 'micromustache';
@@ -32,6 +33,7 @@ type Trigger = {
 	url: string;
 	method: string;
 	disabledConditions: Filter;
+	reload: boolean;
 };
 
 export default defineComponent({
@@ -49,6 +51,7 @@ export default defineComponent({
 		const api = useApi();
 		const { useNotificationsStore } = useStores();
 		const store = useNotificationsStore();
+		const router = useRouter();
 
 		const values = inject('values', ref<Record<string, any>>({}));
 		const parsedUrls = computed(() => props.triggers.map((trigger) => render(trigger.url ?? '', values.value)));
@@ -70,10 +73,14 @@ export default defineComponent({
 					method,
 					url,
 				});
-				store.add({
-					title: 'Success',
-					type: 'success',
-				});
+				if (props.triggers[index]?.reload) {
+					router.go(0);
+				} else {
+					store.add({
+						title: 'Success',
+						type: 'success',
+					});
+				}
 			} catch (error: any) {
 				const message = error.response?.data?.errors?.[0]?.message || error.message || undefined;
 				store.add({

@@ -6,6 +6,7 @@
 			class="action"
 			:class="[trigger.type]"
 			:loading="loadings[index].value"
+			:disabled="disableds[index]"
 			:secondary="trigger.type !== 'primary'"
 			v-bind="{ [trigger.size]: true }"
 			@click="onClick(trigger.method, parsedUrls[index], index)"
@@ -19,7 +20,9 @@
 <script lang="ts">
 import { computed, defineComponent, inject, PropType, ref } from 'vue';
 import { useApi, useStores } from '@directus/extensions-sdk';
+import { Filter } from '@directus/shared/types';
 import { render } from 'micromustache';
+import { checkConditions } from './check-conditions';
 
 type Trigger = {
 	label: string;
@@ -28,6 +31,7 @@ type Trigger = {
 	icon: string;
 	url: string;
 	method: string;
+	disabledConditions: Filter;
 };
 
 export default defineComponent({
@@ -48,10 +52,13 @@ export default defineComponent({
 
 		const values = inject('values', ref<Record<string, any>>({}));
 		const parsedUrls = computed(() => props.triggers.map((trigger) => render(trigger.url ?? '', values.value)));
+		const disableds = computed(() => props.triggers.map((trigger) => (
+			trigger.disabledConditions && checkConditions(values.value, trigger.disabledConditions)),
+		));
 
 		const loadings = props.triggers.map(() => ref(false));
 
-		return { loadings, parsedUrls, onClick };
+		return { loadings, parsedUrls, disableds, onClick };
 
 		async function onClick(method: string, url: string, index: number) {
 			const loading = loadings[index];

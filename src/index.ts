@@ -12,7 +12,7 @@ export default defineInterface({
 	types: ['alias'],
 	localTypes: ['presentation'],
 	group: 'presentation',
-	options: [
+	options: ({ collection }) => [
 		{
 			field: 'layout',
 			name: 'Layout',
@@ -124,6 +124,17 @@ export default defineInterface({
 										{ text: 'GET', value: 'GET' },
 										{ text: 'POST', value: 'POST' },
 									],
+								},
+							},
+						},
+						{
+							field: 'disabledConditions',
+							name: 'Disabled Conditions',
+							type: 'json',
+							meta: {
+								interface: 'system-filter',
+								options: {
+									collectionName: collection,
 								},
 							},
 						},

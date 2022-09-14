@@ -123,6 +123,9 @@ export default defineInterface({
 									choices: [
 										{ text: 'GET', value: 'GET' },
 										{ text: 'POST', value: 'POST' },
+										{ text: 'PUT', value: 'PUT' },
+										{ text: 'PATCH', value: 'PATCH' },
+										{ text: 'DELETE', value: 'DELETE' },
 									],
 								},
 							},

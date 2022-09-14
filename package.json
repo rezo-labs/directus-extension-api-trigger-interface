@@ -1,7 +1,7 @@
 {
 	"name": "directus-extension-api-trigger-interface",
 	"version": "1.0.0",
-	"description": "Display a button to trigger custom APIs",
+	"description": "Trigger API calls from the UI",
 	"author": {
 		"email": "duydvu98@gmail.com",
 		"name": "Vũ Đức Duy"

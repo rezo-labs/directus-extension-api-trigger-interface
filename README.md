@@ -1,3 +1,6 @@
+![npm](https://img.shields.io/npm/v/directus-extension-api-trigger-interface)
+[![GitHub license](https://img.shields.io/github/license/rezo-labs/directus-extension-api-trigger-interface)](https://github.com/rezo-labs/directus-extension-api-trigger-interface/blob/main/LICENSE.txt)
+
 # Introduction
 A [Directus](https://github.com/directus/directus) interface extension for triggering API calls from the UI.
 

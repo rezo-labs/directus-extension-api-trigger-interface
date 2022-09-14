@@ -6,10 +6,12 @@
 			class="action"
 			:class="[trigger.type]"
 			:loading="loadings[index].value"
+			:secondary="trigger.type !== 'primary'"
 			v-bind="{ [trigger.size]: true }"
 			@click="onClick(trigger.method, parsedUrls[index], index)"
 		>
-			{{ trigger.label }}
+			<v-icon v-if="trigger.icon" left :name="trigger.icon" />
+			<span v-if="trigger.label">{{ trigger.label }}</span>
 		</v-button>
 	</div>
 </template>

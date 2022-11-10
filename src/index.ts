@@ -106,6 +106,7 @@ export default defineInterface({
                             type: "string",
                             meta: {
                                 width: "full",
+                                interface: "system-display-template",
                                 options: {
                                     collectionName: collection,
                                     font: "monospace",

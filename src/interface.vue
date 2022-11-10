@@ -90,7 +90,7 @@ export default defineComponent({
                             result.data?.text ||
                             "Action was completed successfully",
                         type: "success",
-                        dialog: true,
+                        dialog: result.data?.dialog || false,
                     });
 
                     if (result.data?.goto) router.push(result.data.goto);

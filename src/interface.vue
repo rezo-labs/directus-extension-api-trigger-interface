@@ -85,7 +85,7 @@ export default defineComponent({
           store.add({
             title: result.data?.title || "Success",
             text: result.data?.text || "Action was completed successfully",
-            type: "success",
+            type: result.data?.type || "success",
             dialog: result.data?.dialog || false,
           });
 
